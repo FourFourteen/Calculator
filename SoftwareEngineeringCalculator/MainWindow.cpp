@@ -11,7 +11,7 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200,
 	wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
 	wxFlexGridSizer* btnsizer = new wxFlexGridSizer(6, 4, 0, 0);
 	txt = new wxTextCtrl(this, 0, "", wxPoint(0, 0), wxSize(320, 80));
-	topsizer->Add((txt), 0, wxEXPAND | wxALL);
+	topsizer->Add((txt), 1, wxEXPAND | wxALL);
 	
 	for (int i = 1; i <= 24; ++i) {
 		buttons[i-1] = new wxButton(this, i, symbols[i-1], wxPoint(((i - 1) % 4) * 80, y), size);
@@ -27,7 +27,7 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200,
 		}
 	}
 
-	topsizer->Add(btnsizer, 1, wxEXPAND | wxALL);
+	topsizer->Add(btnsizer, 0, wxEXPAND | wxALL);
 	SetSizerAndFit(topsizer);
 
 }
