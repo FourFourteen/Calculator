@@ -42,6 +42,9 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200,
 	txt = new wxTextCtrl(this, 0, "", wxPoint(0, 0), wxSize(320, 80));
 	txt->SetDefaultStyle(wxTextAttr(wxTE_RIGHT));
 	txt->SetDefaultStyle(wxTextAttr(wxTE_READONLY));
+	wxFont font(40, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
+	txt->SetFont(font);
+
 	topsizer->Add((txt), 1, wxEXPAND | wxALL);
 	
 	for (int i = 1; i <= 24; ++i) {
@@ -74,12 +77,21 @@ MainWindow::~MainWindow() {
 void MainWindow::OnButtonClicked(wxCommandEvent& evt) {
 	int id = evt.GetId();
 	wxString btnText = buttons[id - 1]->GetLabel();
-	if (btnText == "DEL" || btnText == "C" || btnText == "CE") {
+	if (btnText == "DEL" || btnText == "C" || btnText == "CE" || btnText == "dec." || btnText == "bin." || btnText == "hex.") {
 		if (btnText == "C" || btnText == "CE") {
 			txt->Clear();
 		}
-		else {
+		else if (btnText == "DEL") {
 			//DEL button
+		}
+		else if (btnText == "dec.") {
+			//dec. button
+		}
+		else if (btnText == "bin.") {
+			//bin. button
+		}
+		else {
+			//hex. button
 		}
 	}
 	else {
