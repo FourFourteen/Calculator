@@ -2,6 +2,35 @@
 #include <vector>
 #include <string>
 
+wxBEGIN_EVENT_TABLE(MainWindow, wxFrame)
+	EVT_BUTTON(1, OnButtonClicked)
+	/*EVT_BUTTON(2, OnButtonClicked)
+	EVT_BUTTON(3, OnButtonClicked)
+	EVT_BUTTON(4, OnButtonClicked)
+	EVT_BUTTON(5, OnButtonClicked)
+	EVT_BUTTON(6, OnButtonClicked)
+	EVT_BUTTON(7, OnButtonClicked)
+	EVT_BUTTON(8, OnButtonClicked)
+	EVT_BUTTON(9, OnButtonClicked)
+	EVT_BUTTON(10, OnButtonClicked)
+	EVT_BUTTON(11, OnButtonClicked)
+	EVT_BUTTON(12, OnButtonClicked)
+	EVT_BUTTON(13, OnButtonClicked)
+	EVT_BUTTON(14, OnButtonClicked)
+	EVT_BUTTON(15, OnButtonClicked)
+	EVT_BUTTON(16, OnButtonClicked)
+	EVT_BUTTON(17, OnButtonClicked)
+	EVT_BUTTON(18, OnButtonClicked)
+	EVT_BUTTON(19, OnButtonClicked)
+	EVT_BUTTON(20, OnButtonClicked)
+	EVT_BUTTON(21, OnButtonClicked)
+	EVT_BUTTON(22, OnButtonClicked)
+	EVT_BUTTON(23, OnButtonClicked)
+	EVT_BUTTON(24, OnButtonClicked)*/
+
+
+wxEND_EVENT_TABLE()
+
 MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), wxSize(337, 480)) {
 	wxSize size = wxSize(80, 60);
 	int y = 80;
@@ -11,11 +40,14 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200,
 	wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
 	wxFlexGridSizer* btnsizer = new wxFlexGridSizer(6, 4, 0, 0);
 	txt = new wxTextCtrl(this, 0, "", wxPoint(0, 0), wxSize(320, 80));
+	txt->SetDefaultStyle(wxTextAttr(wxTE_RIGHT));
+	txt->SetDefaultStyle(wxTextAttr(wxTE_READONLY));
 	topsizer->Add((txt), 1, wxEXPAND | wxALL);
 	
 	for (int i = 1; i <= 24; ++i) {
 		buttons[i-1] = new wxButton(this, i, symbols[i-1], wxPoint(((i - 1) % 4) * 80, y), size);
 		btnsizer->Add((buttons[i - 1]), 1, wxEXPAND | wxALL);
+		buttons[i-1]->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &MainWindow::OnButtonClicked, this);
 		if (i % 4 == 0) {
 			btnsizer->AddGrowableRow(curRow);
 			curRow++;
@@ -33,4 +65,26 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200,
 }
 
 MainWindow::~MainWindow() {
+	delete txt;
+	for (int i = 0; i < buttons.size(); ++i) {
+		delete buttons[i];
+	}
+}
+
+void MainWindow::OnButtonClicked(wxCommandEvent& evt) {
+	int id = evt.GetId();
+	wxString btnText = buttons[id - 1]->GetLabel();
+	if (btnText == "DEL" || btnText == "C" || btnText == "CE") {
+		if (btnText == "C" || btnText == "CE") {
+			txt->Clear();
+		}
+		else {
+			//DEL button
+		}
+	}
+	else {
+		txt->AppendText(buttons[id - 1]->GetLabel());
+	}
+
+	evt.Skip();
 }
