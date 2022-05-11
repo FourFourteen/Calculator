@@ -39,7 +39,7 @@ public:
 	std::vector<std::string> symbols{ "%", "CE", "C", "DEL", "dec.", "bin.", "hex.", "/", "7", "8", "9", "*", "4", "5", "6", "-", "1", "2", "3", "+", "-", "0", ".", "=" };
 
 	void OnButtonClicked(wxCommandEvent& evt);
-	wxDECLARE_EVENT_TABLE();
+	//wxDECLARE_EVENT_TABLE();
 
 };
 

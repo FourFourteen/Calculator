@@ -2,9 +2,33 @@
 #include <vector>
 #include <string>
 
-wxBEGIN_EVENT_TABLE(MainWindow, wxFrame)
-	EVT_BUTTON(1, OnButtonClicked)
-wxEND_EVENT_TABLE()
+//wxBEGIN_EVENT_TABLE(MainWindow, wxFrame)
+//	EVT_BUTTON(1, OnButtonClicked)
+//	EVT_BUTTON(2, OnButtonClicked)
+//	EVT_BUTTON(3, OnButtonClicked)
+//	EVT_BUTTON(4, OnButtonClicked)
+//	EVT_BUTTON(5, OnButtonClicked)
+//	EVT_BUTTON(6, OnButtonClicked)
+//	EVT_BUTTON(7, OnButtonClicked)
+//	EVT_BUTTON(8, OnButtonClicked)
+//	EVT_BUTTON(9, OnButtonClicked)
+//	EVT_BUTTON(10, OnButtonClicked)
+//	EVT_BUTTON(11, OnButtonClicked)
+//	EVT_BUTTON(12, OnButtonClicked)
+//	EVT_BUTTON(13, OnButtonClicked)
+//	EVT_BUTTON(14, OnButtonClicked)
+//	EVT_BUTTON(15, OnButtonClicked)
+//	EVT_BUTTON(16, OnButtonClicked)
+//	EVT_BUTTON(17, OnButtonClicked)
+//	EVT_BUTTON(18, OnButtonClicked)
+//	EVT_BUTTON(19, OnButtonClicked)
+//	EVT_BUTTON(20, OnButtonClicked)
+//	EVT_BUTTON(21, OnButtonClicked)
+//	EVT_BUTTON(22, OnButtonClicked)
+//	EVT_BUTTON(23, OnButtonClicked)
+//	EVT_BUTTON(24, OnButtonClicked)
+//
+//wxEND_EVENT_TABLE()
 
 MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), wxSize(337, 480)) {
 	wxSize size = wxSize(80, 60);
