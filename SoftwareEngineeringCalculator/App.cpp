@@ -8,3 +8,7 @@ bool App::OnInit() {
 	mainWindow->Show();
 	return true;
 }
+
+MainWindow* App::getMainWindow() {
+	return mainWindow;
+}

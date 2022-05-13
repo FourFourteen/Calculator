@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include <vector>
 #include <string>
+#include "ButtonFactory.h"
 
 //wxBEGIN_EVENT_TABLE(MainWindow, wxFrame)
 //	EVT_BUTTON(1, OnButtonClicked)
@@ -31,10 +32,6 @@
 //wxEND_EVENT_TABLE()
 
 MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), wxSize(337, 480)) {
-	wxSize size = wxSize(80, 60);
-	int y = 80;
-	int curRow = 0;
-	int curCol = 0;
 
 	wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
 	wxFlexGridSizer* btnsizer = new wxFlexGridSizer(6, 4, 0, 0);
@@ -44,19 +41,20 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200,
 	txt->SetFont(font);
 
 	topsizer->Add((txt), 1, wxEXPAND | wxALL);
+
+	ButtonFactory factory(this);
 	
 	for (int i = 1; i <= 24; ++i) {
-		buttons[i-1] = new wxButton(this, i, symbols[i-1], wxPoint(((i - 1) % 4) * 80, y), size);
+		buttons[i-1] = factory.CreateButton();
 		btnsizer->Add((buttons[i - 1]), 1, wxEXPAND | wxALL);
-		buttons[i-1]->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &MainWindow::OnButtonClicked, this);
 		if (i % 4 == 0) {
-			btnsizer->AddGrowableRow(curRow);
-			curRow++;
-			y += 60;
+			btnsizer->AddGrowableRow(factory.curRow);
+			factory.curRow++;
+			factory.y += 60;
 		}
 		if (i % 6 == 0) {
-			btnsizer->AddGrowableCol(curCol);
-			curCol++;
+			btnsizer->AddGrowableCol(factory.curCol);
+			factory.curCol++;
 		}
 	}
 
@@ -98,3 +96,4 @@ void MainWindow::OnButtonClicked(wxCommandEvent& evt) {
 
 	evt.Skip();
 }
+

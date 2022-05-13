@@ -9,6 +9,7 @@ private:
 	MainWindow* mainWindow;
 public:
 	virtual bool OnInit();
+	MainWindow* getMainWindow();
 };
 
 
