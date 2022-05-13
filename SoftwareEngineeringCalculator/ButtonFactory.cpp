@@ -1,7 +1,6 @@
 #include "ButtonFactory.h"
 #include "MainWindow.h"
 
-//Push
 ButtonFactory::ButtonFactory(MainWindow* _win) {
 	win = _win;
 }
