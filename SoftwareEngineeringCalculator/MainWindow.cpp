@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "ButtonFactory.h"
+#include "CalculatorProcessor.h"
 
 //wxBEGIN_EVENT_TABLE(MainWindow, wxFrame)
 //	EVT_BUTTON(1, OnButtonClicked)
@@ -31,6 +32,7 @@
 //
 //wxEND_EVENT_TABLE()
 
+CalculatorProcessor* process = CalculatorProcessor::GetInstance();
 MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), wxSize(337, 480)) {
 
 	wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
@@ -45,7 +47,7 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200,
 	ButtonFactory factory(this);
 	
 	for (int i = 1; i <= 24; ++i) {
-		buttons[i-1] = factory.CreateButton();
+		buttons[i - 1] = factory.CreateButton();
 		btnsizer->Add((buttons[i - 1]), 1, wxEXPAND | wxALL);
 		if (i % 4 == 0) {
 			btnsizer->AddGrowableRow(factory.curRow);
@@ -73,7 +75,7 @@ MainWindow::~MainWindow() {
 void MainWindow::OnButtonClicked(wxCommandEvent& evt) {
 	int id = evt.GetId();
 	wxString btnText = buttons[id - 1]->GetLabel();
-	if (btnText == "DEL" || btnText == "C" || btnText == "CE" || btnText == "dec." || btnText == "bin." || btnText == "hex.") {
+	if (btnText == "DEL" || btnText == "C" || btnText == "CE" || btnText == "dec." || btnText == "bin." || btnText == "hex." || btnText == "=") {
 		if (btnText == "C" || btnText == "CE") {
 			txt->Clear();
 		}
@@ -86,8 +88,12 @@ void MainWindow::OnButtonClicked(wxCommandEvent& evt) {
 		else if (btnText == "bin.") {
 			//bin. button
 		}
-		else {
+		else if (btnText == "hex.") {
 			//hex. button
+		}
+		else {
+			//= button
+
 		}
 	}
 	else {
