@@ -45,7 +45,131 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200,
 	ButtonFactory factory(this);
 	
 	for (int i = 1; i <= 24; ++i) {
-		buttons[i-1] = factory.CreateButton();
+		switch (i)
+		{
+		case 1: 
+		{
+			buttons[i-1] = factory.CreateButton1();
+			break;
+		}
+		case 2:
+		{
+			buttons[i - 1] = factory.CreateButton2();
+			break;
+		}
+		case 3:
+		{
+			buttons[i - 1] = factory.CreateButton3();
+			break;
+		}
+		case 4:
+		{
+			buttons[i - 1] = factory.CreateButton4();
+			break;
+		}
+		case 5:
+		{
+			buttons[i - 1] = factory.CreateButton5();
+			break;
+		}
+		case 6:
+		{
+			buttons[i - 1] = factory.CreateButton6();
+			break;
+		}
+		case 7:
+		{
+			buttons[i - 1] = factory.CreateButton7();
+			break;
+		}
+		case 8:
+		{
+			buttons[i - 1] = factory.CreateButton8();
+			break;
+		}
+		case 9:
+		{
+			buttons[i - 1] = factory.CreateButton9();
+			break;
+		}
+		case 10:
+		{
+			buttons[i - 1] = factory.CreateButton10();
+			break;
+		}
+		case 11:
+		{
+			buttons[i - 1] = factory.CreateButton11();
+			break;
+		}
+		case 12:
+		{
+			buttons[i - 1] = factory.CreateButton12();
+			break;
+		}
+		case 13:
+		{
+			buttons[i - 1] = factory.CreateButton13();
+			break;
+		}
+		case 14:
+		{
+			buttons[i - 1] = factory.CreateButton14();
+			break;
+		}
+		case 15:
+		{
+			buttons[i - 1] = factory.CreateButton15();
+			break;
+		}
+		case 16:
+		{
+			buttons[i - 1] = factory.CreateButton16();
+			break;
+		}
+		case 17:
+		{
+			buttons[i - 1] = factory.CreateButton17();
+			break;
+		}
+		case 18:
+		{
+			buttons[i - 1] = factory.CreateButton18();
+			break;
+		}
+		case 19:
+		{
+			buttons[i - 1] = factory.CreateButton19();
+			break;
+		}
+		case 20:
+		{
+			buttons[i - 1] = factory.CreateButton20();
+			break;
+		}
+		case 21:
+		{
+			buttons[i - 1] = factory.CreateButton21();
+			break;
+		}
+		case 22:
+		{
+			buttons[i - 1] = factory.CreateButton22();
+			break;
+		}
+		case 23:
+		{
+			buttons[i - 1] = factory.CreateButton23();
+			break;
+		}
+		case 24:
+		{
+			buttons[i - 1] = factory.CreateButton24();
+			break;
+		}
+		default:
+			break;
+		}
 		btnsizer->Add((buttons[i - 1]), 1, wxEXPAND | wxALL);
 		if (i % 4 == 0) {
 			btnsizer->AddGrowableRow(factory.curRow);
