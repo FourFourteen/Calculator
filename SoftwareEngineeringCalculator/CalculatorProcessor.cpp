@@ -1,60 +1,161 @@
 #include "CalculatorProcessor.h"
 
+void CalculatorProcessor::Add() {
+	int test = std::stoi(numberHolder);
+	numAsInt.push_back(std::stoi(numberHolder));
+	opAsString.push_back("+");
+	numberHolder = "";
+}
 
+void CalculatorProcessor::Subtract() {
+	numAsInt.push_back(std::stoi(numberHolder));
+	opAsString.push_back("-");
+	numberHolder = "";
+}
 
-int CalculatorProcessor::Calculate(std::string pblem) {
-	while (pblem.find("+") > -1 || pblem.find("-") > -1 || pblem.find("*") > -1 || pblem.find("/") > -1) {
-		std::vector<int> indexes;
-		for (int i = 0; i < pblem.size(); ++i) {
-			std::string subPblem = pblem.substr(i, 1);
-			if (subPblem == "+" || subPblem == "-" || subPblem == "*" || subPblem == "/") {
-				indexes.push_back(i);
+void CalculatorProcessor::Multiply() {
+	numAsInt.push_back(std::stoi(numberHolder));
+	opAsString.push_back("*");
+	numberHolder = "";
+}
+
+void CalculatorProcessor::Divide() {
+	numAsInt.push_back(std::stoi(numberHolder));
+	opAsString.push_back("/");
+	numberHolder = "";
+}
+
+void CalculatorProcessor::Mod() {
+	numAsInt.push_back(std::stoi(numberHolder));
+	opAsString.push_back("%");
+	numberHolder = "";
+}
+
+void CalculatorProcessor::Equals() {
+	if (!(numberHolder == "")) { //Making sure that the user didn't end the equation with a random operator
+		numAsInt.push_back(std::stoi(numberHolder));
+
+		for (int i = 0; i < opAsString.size(); ++i) {
+			if (opAsString[i] == "+" || opAsString[i] == "-") {
+				++AS;
+			}
+			else {
+				++MDM;
 			}
 		}
-		if (pblem.find("*") > -1 || pblem.find("/") > -1) {
-			int mult = pblem.find("*");
-			int div = pblem.find("/");
 
-			std::string firstNumber;
-			std::string secondNumber;
-			if (mult > div) {
-				int multIndexes = findIndex(mult, indexes); //Returns the index of * in indexes... it's a little confusing
-				if (multIndexes - 1 < 0) {
-					firstNumber = pblem.substr(0, indexes[multIndexes]);
-				}
-				else {
-					firstNumber = pblem.substr(indexes[multIndexes - 1] + 1, indexes[multIndexes] - 1);
-				}
+		while (numAsInt.size() > 1) {
+			std::vector<int>::iterator numberIter = numAsInt.begin(); //2
+			std::vector<std::string>::iterator stringIter = opAsString.begin(); //+
 
-				if (multIndexes + 1 > indexes.size() - 1) {
-					secondNumber = pblem.substr(indexes[multIndexes] + 1);
-				}
-				else {
-					secondNumber = pblem.substr(indexes[multIndexes] + 1, indexes[multIndexes + 1] - 1);
+			if (MDM > 0) {
+				int operatorTotal;
+				for (int i = 0; i < opAsString.size(); ++i) {          //opAsString = [+, *, -]     numAsInt = [2, 2, 3, 1]
+					if (opAsString[i] == "*") {
+						operatorTotal = numAsInt[i] * numAsInt[i + 1];   //operatorTotal = 2 * 3 (6)
+						numAsInt[i] = operatorTotal;  //[2, 6, 3, 1]
+
+						numberIter++; // copyNumberIter = 3
+						numAsInt.erase(numberIter); // numAsInt = [2, 6, 1]
+						
+						opAsString.erase(stringIter); // opAsString = [+, -]
+
+						numberIter = numAsInt.begin();
+						stringIter = opAsString.begin();
+						i = 0;
+						MDM--;
+					}
+					else if (opAsString[i] == "/") {
+						operatorTotal = numAsInt[i] / numAsInt[i + 1];   //operatorTotal = 2 / 3 (2/3)
+						numAsInt[i] = operatorTotal;  //[2, 6, 3, 1]
+
+						numberIter++; // copyNumberIter = 3
+						numAsInt.erase(numberIter); // numAsInt = [2, 6, 1]
+
+						opAsString.erase(stringIter); // opAsString = [+, -]
+
+						numberIter = numAsInt.begin();
+						stringIter = opAsString.begin();
+						i = 0;
+						MDM--;
+					}
+					else if (opAsString[i] == "%") {
+						operatorTotal = numAsInt[i] % numAsInt[i + 1];   //operatorTotal = 2 % 3 (2)
+						numAsInt[i] = operatorTotal;  //[2, 6, 3, 1]
+
+						numberIter++; // copyNumberIter = 3
+						numAsInt.erase(numberIter); // numAsInt = [2, 6, 1]
+
+						opAsString.erase(stringIter); // opAsString = [+, -]
+
+						numberIter = numAsInt.begin();
+						stringIter = opAsString.begin();
+						i = 0;
+						MDM--;
+					}
+					else {
+						numberIter++;
+						stringIter++;
+					}
 				}
 			}
-			else if (div > mult) {
+			else if (AS > 0) {
+				int operatorTotal;
+				for (int i = 0; i < opAsString.size(); ++i) {
+					if (opAsString[i] == "+") {
+						operatorTotal = numAsInt[i] + numAsInt[i + 1];   //operatorTotal = 2 + 3 (5)
+						numAsInt[i] = operatorTotal;  //[2, 6, 3, 1]
 
+						numberIter++; // copyNumberIter = 3
+						numAsInt.erase(numberIter); // numAsInt = [2, 6, 1]
+
+						opAsString.erase(stringIter); // opAsString = [+, -]
+
+						numberIter = numAsInt.begin();
+						stringIter = opAsString.begin();
+						i = 0;
+						MDM--;
+					}
+					else if (opAsString[i] == "-") {
+						operatorTotal = numAsInt[i] - numAsInt[i + 1];   //operatorTotal = 2 - 3 (-1)
+						numAsInt[i] = operatorTotal;  //[2, 6, 3, 1]
+
+						numberIter++; // copyNumberIter = 3
+						numAsInt.erase(numberIter); // numAsInt = [2, 6, 1]
+
+						opAsString.erase(stringIter); // opAsString = [+, -]
+
+						numberIter = numAsInt.begin();
+						stringIter = opAsString.begin();
+						i = 0;
+						MDM--;
+					}
+					else {
+						numberIter++;
+						stringIter++;
+					}
+				}
 			}
+
 		}
-		else if (pblem.find("-") > -1 || pblem.find("+") > -1) {
-			int plus = pblem.find("+");
-			int min = pblem.find("-");
-			if (plus > min) {
-
-			}
-			else if (min > plus) {
-
-			}
-		}
+		txt->Clear();
+		txt->AppendText(std::to_string(numAsInt[0]));
+		numberHolder = std::to_string(numAsInt[0]);
+		numAsInt.clear();
+		opAsString.clear();
+		AS = 0;
+		MDM = 0;
 	}
 }
 
-int findIndex(int index1, std::vector<int> lIndex) {
-	for (int i = 0; i < lIndex.size(); ++i) {
-		if (index1 == lIndex[i]) {
-			return i;
-		}
-	}
-	return -1;
+void CalculatorProcessor::AddNumber(wxString btnText) {
+	numberHolder += btnText;
+}
+
+CalculatorProcessor::~CalculatorProcessor() {
+	delete instance;
+}
+
+void CalculatorProcessor::TogglePressedLast() {
+	opNotPressedLast = !opNotPressedLast;
 }

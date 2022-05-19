@@ -31,8 +31,7 @@
 //	EVT_BUTTON(24, OnButtonClicked)
 //
 //wxEND_EVENT_TABLE()
-
-CalculatorProcessor* process = CalculatorProcessor::GetInstance();
+CalculatorProcessor* CalculatorProcessor::instance;
 MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), wxSize(337, 480)) {
 
 	wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
@@ -72,7 +71,17 @@ MainWindow::~MainWindow() {
 	}
 }
 
+//2 lists 
+//A list of the operators as strings
+//A list of the numbers as floats
+//And a string to append all the digits to until the user presses an operator button
+
+std::vector<std::string> opAsString;
+std::vector<float> numAsInt;
+std::string numberHolder = "";
+
 void MainWindow::OnButtonClicked(wxCommandEvent& evt) {
+	CalculatorProcessor* process = CalculatorProcessor::GetInstance();
 	int id = evt.GetId();
 	wxString btnText = buttons[id - 1]->GetLabel();
 	if (btnText == "DEL" || btnText == "C" || btnText == "CE" || btnText == "dec." || btnText == "bin." || btnText == "hex." || btnText == "=") {
@@ -93,11 +102,35 @@ void MainWindow::OnButtonClicked(wxCommandEvent& evt) {
 		}
 		else {
 			//= button
-
+			process->SetTxt(txt);
+			process->Equals();
 		}
 	}
 	else {
-		txt->AppendText(buttons[id - 1]->GetLabel());
+		if (!txt->IsEmpty() && process->opNotPressedLast) { //If textcontrol is NOT empty
+			if (btnText == "+") {
+				process->Add();
+			}
+			else if (btnText == "-") {
+				process->Subtract();
+			}
+			else if (btnText == "*") {
+				process->Multiply();
+			}
+			else if (btnText == "/") {
+				process->Divide();
+			}
+			else if (btnText == "%") {
+				process->Mod();
+			}
+			process->TogglePressedLast();
+			txt->AppendText(buttons[id - 1]->GetLabel());
+		}
+		else if (btnText == "0" || btnText == "1" || btnText == "2" || btnText == "3" || btnText == "4" || btnText == "5" || btnText == "6" || btnText == "7" || btnText == "8" || btnText == "9") {
+			process->AddNumber(btnText);
+			txt->AppendText(buttons[id - 1]->GetLabel());
+			process->TogglePressedLast();
+		}
 	}
 
 	evt.Skip();
