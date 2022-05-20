@@ -156,6 +156,3 @@ CalculatorProcessor::~CalculatorProcessor() {
 	delete instance;
 }
 
-void CalculatorProcessor::TogglePressedLast() {
-	opNotPressedLast = !opNotPressedLast;
-}

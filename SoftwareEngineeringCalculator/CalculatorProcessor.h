@@ -35,7 +35,6 @@ public:
 	void Mod();
 	void Equals();
 	void AddNumber(wxString btnText);
-	void TogglePressedLast();
 
 };
 
