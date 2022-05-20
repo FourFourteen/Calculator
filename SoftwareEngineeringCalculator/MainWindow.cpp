@@ -107,7 +107,7 @@ void MainWindow::OnButtonClicked(wxCommandEvent& evt) {
 		}
 	}
 	else {
-		if (!txt->IsEmpty() && process->opNotPressedLast) { //If textcontrol is NOT empty
+		if (!txt->IsEmpty() && process->opNotPressedLast && (btnText == "+" || btnText == "-" || btnText == "*" || btnText == "/" || btnText == "%")) { //If textcontrol is NOT empty
 			if (btnText == "+") {
 				process->Add();
 			}
@@ -123,13 +123,13 @@ void MainWindow::OnButtonClicked(wxCommandEvent& evt) {
 			else if (btnText == "%") {
 				process->Mod();
 			}
-			process->TogglePressedLast();
+			process->opNotPressedLast = false;
 			txt->AppendText(buttons[id - 1]->GetLabel());
 		}
 		else if (btnText == "0" || btnText == "1" || btnText == "2" || btnText == "3" || btnText == "4" || btnText == "5" || btnText == "6" || btnText == "7" || btnText == "8" || btnText == "9") {
 			process->AddNumber(btnText);
 			txt->AppendText(buttons[id - 1]->GetLabel());
-			process->TogglePressedLast();
+			process->opNotPressedLast = true;
 		}
 	}
 
