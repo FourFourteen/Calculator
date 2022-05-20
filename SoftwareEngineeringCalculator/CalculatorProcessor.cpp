@@ -154,5 +154,6 @@ void CalculatorProcessor::AddNumber(wxString btnText) {
 
 CalculatorProcessor::~CalculatorProcessor() {
 	delete instance;
+	delete txt;
 }
 

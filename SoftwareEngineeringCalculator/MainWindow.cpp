@@ -34,8 +34,8 @@
 CalculatorProcessor* CalculatorProcessor::instance;
 MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), wxSize(337, 480)) {
 
-	wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
-	wxFlexGridSizer* btnsizer = new wxFlexGridSizer(6, 4, 0, 0);
+	topsizer = new wxBoxSizer(wxVERTICAL);
+	btnsizer = new wxFlexGridSizer(6, 4, 0, 0);
 	txt = new wxTextCtrl(this, 0, "", wxPoint(0, 0), wxSize(320, 80), wxTE_RIGHT);
 	txt->SetEditable(false);
 	wxFont font(40, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
@@ -132,7 +132,6 @@ void MainWindow::OnButtonClicked(wxCommandEvent& evt) {
 			process->opNotPressedLast = true;
 		}
 	}
-
 	evt.Skip();
 }
 
