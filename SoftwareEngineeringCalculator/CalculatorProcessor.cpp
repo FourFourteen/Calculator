@@ -1,32 +1,41 @@
 #include "CalculatorProcessor.h"
 
 void CalculatorProcessor::Add() {
-	int test = std::stoi(numberHolder);
-	numAsInt.push_back(std::stoi(numberHolder));
+	if (numAsInt.size() == opAsString.size()) {
+		numAsInt.push_back(std::stoi(numberHolder));
+	}
 	opAsString.push_back("+");
 	numberHolder = "";
 }
 
 void CalculatorProcessor::Subtract() {
-	numAsInt.push_back(std::stoi(numberHolder));
+	if (numAsInt.size() == opAsString.size()) {
+		numAsInt.push_back(std::stoi(numberHolder));
+	}
 	opAsString.push_back("-");
 	numberHolder = "";
 }
 
 void CalculatorProcessor::Multiply() {
-	numAsInt.push_back(std::stoi(numberHolder));
+	if (numAsInt.size() == opAsString.size()) {
+		numAsInt.push_back(std::stoi(numberHolder));
+	}
 	opAsString.push_back("*");
 	numberHolder = "";
 }
 
 void CalculatorProcessor::Divide() {
-	numAsInt.push_back(std::stoi(numberHolder));
+	if (numAsInt.size() == opAsString.size()) {
+		numAsInt.push_back(std::stoi(numberHolder));
+	}
 	opAsString.push_back("/");
 	numberHolder = "";
 }
 
 void CalculatorProcessor::Mod() {
-	numAsInt.push_back(std::stoi(numberHolder));
+	if (numAsInt.size() == opAsString.size()) {
+		numAsInt.push_back(std::stoi(numberHolder));
+	}
 	opAsString.push_back("%");
 	numberHolder = "";
 }
@@ -114,7 +123,7 @@ void CalculatorProcessor::Equals() {
 						numberIter = numAsInt.begin();
 						stringIter = opAsString.begin();
 						i = 0;
-						MDM--;
+						AS--;
 					}
 					else if (opAsString[i] == "-") {
 						operatorTotal = numAsInt[i] - numAsInt[i + 1];   //operatorTotal = 2 - 3 (-1)
@@ -128,7 +137,7 @@ void CalculatorProcessor::Equals() {
 						numberIter = numAsInt.begin();
 						stringIter = opAsString.begin();
 						i = 0;
-						MDM--;
+						AS--;
 					}
 					else {
 						numberIter++;
@@ -139,7 +148,16 @@ void CalculatorProcessor::Equals() {
 
 		}
 		txt->Clear();
-		txt->AppendText(std::to_string(numAsInt[0]));
+		if (isHex) {
+			Hex();
+		}
+		else if (isBin) {
+			Bin();
+		}
+		else {
+			txt->AppendText(std::to_string(numAsInt[0]));
+		}
+
 		numberHolder = std::to_string(numAsInt[0]);
 		numAsInt.clear();
 		opAsString.clear();
@@ -157,3 +175,83 @@ CalculatorProcessor::~CalculatorProcessor() {
 	delete txt;
 }
 
+void CalculatorProcessor::Hex() {
+	std::ostringstream ss;
+	std::string result;
+
+	AddToIntList();
+
+	ss << std::hex << numAsInt[0];
+	result = ss.str();
+	
+	txt->Clear();
+	txt->AppendText(result);
+}
+
+void CalculatorProcessor::Bin() {
+	std::string result;
+	int convert;
+	
+	AddToIntList();
+
+	convert = numAsInt[0];
+
+	while (convert != 0) {
+		result += (convert % 2 == 0 ? "0" : "1");
+		convert /= 2;
+	}
+
+	txt->Clear();
+	wxString reverse = std::string(result.rbegin(), result.rend());
+	txt->AppendText(reverse);
+}
+
+void CalculatorProcessor::Dec() {
+	std::string result;
+
+	AddToIntList();
+
+	result += std::to_string(numAsInt[0]);
+
+	txt->Clear();
+	txt->AppendText(result);
+}
+
+wxTextCtrl* CalculatorProcessor::GetText() {
+	return txt;
+}
+
+void CalculatorProcessor::GetEnd() {
+	std::vector<int>::iterator it = numAsInt.begin();
+	for (int i = 1; i < numAsInt.size(); ++i) {
+		it++;
+	}
+
+	if (numAsInt.size() != 0) {
+		numAsInt.erase(it);
+	}
+}
+
+bool CalculatorProcessor::ContainsOp() {
+	if (opAsString.size() > 0) {
+		return true;
+	}
+	return false;
+}
+
+void CalculatorProcessor::AddToIntList() {
+	if (numAsInt.size() == 0) {
+		numAsInt.push_back(std::stoi(numberHolder));
+	}
+}
+
+void CalculatorProcessor::Clear() {
+	numAsInt.clear();
+	opAsString.clear();
+	txt->Clear();
+	numberHolder = "";
+}
+
+std::string CalculatorProcessor::GetNumberHolder() {
+	return numberHolder;
+}

@@ -82,32 +82,45 @@ std::string numberHolder = "";
 
 void MainWindow::OnButtonClicked(wxCommandEvent& evt) {
 	CalculatorProcessor* process = CalculatorProcessor::GetInstance();
+	if (process->GetText() == nullptr) {
+		process->SetTxt(txt);
+	}
 	int id = evt.GetId();
 	wxString btnText = buttons[id - 1]->GetLabel();
-	if (btnText == "DEL" || btnText == "C" || btnText == "CE" || btnText == "dec." || btnText == "bin." || btnText == "hex." || btnText == "=") {
+
+	if (!txt->IsEmpty() && (btnText == "C" || btnText == "CE" || btnText == "dec." || btnText == "bin." || btnText == "hex." || btnText == "=")) {
 		if (btnText == "C" || btnText == "CE") {
-			txt->Clear();
+			process->Clear();
 		}
-		else if (btnText == "DEL") {
-			//DEL button
-		}
-		else if (btnText == "dec.") {
+		else if (btnText == "dec." && !process->ContainsOp()) {
 			//dec. button
+			process->Dec();
+			process->isDec = true;
+			process->isHex = false;
+			process->isBin = false;
+
 		}
-		else if (btnText == "bin.") {
+		else if (btnText == "bin." && !process->ContainsOp()) {
 			//bin. button
+			process->Bin();
+			process->isDec = false;
+			process->isHex = false;
+			process->isBin = true;
 		}
-		else if (btnText == "hex.") {
+		else if (btnText == "hex." && !process->ContainsOp()) {
 			//hex. button
+			process->Hex();
+			process->isDec = false;
+			process->isHex = true;
+			process->isBin = false;
 		}
 		else {
 			//= button
-			process->SetTxt(txt);
 			process->Equals();
 		}
 	}
-	else {
-		if (!txt->IsEmpty() && process->opNotPressedLast && (btnText == "+" || btnText == "-" || btnText == "*" || btnText == "/" || btnText == "%")) { //If textcontrol is NOT empty
+	else if (process->isDec) {
+		if (!txt->IsEmpty() && process->opNotPressedLast && (btnText == "+" || btnText == "-" || btnText == "*" || btnText == "/" || btnText == "%" || btnText == "DEL")) { //If textcontrol is NOT empty
 			if (btnText == "+") {
 				process->Add();
 			}
@@ -123,10 +136,13 @@ void MainWindow::OnButtonClicked(wxCommandEvent& evt) {
 			else if (btnText == "%") {
 				process->Mod();
 			}
+			else if (btnText == "DEL") {
+				//DEL button
+			}
 			process->opNotPressedLast = false;
 			txt->AppendText(buttons[id - 1]->GetLabel());
 		}
-		else if (btnText == "0" || btnText == "1" || btnText == "2" || btnText == "3" || btnText == "4" || btnText == "5" || btnText == "6" || btnText == "7" || btnText == "8" || btnText == "9") {
+		else if ((btnText == "0" && process->GetNumberHolder() != "") || btnText == "1" || btnText == "2" || btnText == "3" || btnText == "4" || btnText == "5" || btnText == "6" || btnText == "7" || btnText == "8" || btnText == "9") {
 			process->AddNumber(btnText);
 			txt->AppendText(buttons[id - 1]->GetLabel());
 			process->opNotPressedLast = true;

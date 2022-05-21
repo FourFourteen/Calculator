@@ -1,6 +1,8 @@
 #pragma once
 #include "wx\wx.h"
 #include <string>
+#include <sstream>
+
 class CalculatorProcessor
 {
 private:
@@ -25,6 +27,9 @@ public:
 	}
 
 	bool opNotPressedLast = false;
+	bool isDec = true;
+	bool isHex = false;
+	bool isBin = false;
 
 	void SetTxt(wxTextCtrl* ctrl) { txt = ctrl; }
 
@@ -34,7 +39,15 @@ public:
 	void Divide();
 	void Mod();
 	void Equals();
+	void Hex();
+	void Bin();
+	void Dec();
+	wxTextCtrl* GetText();
 	void AddNumber(wxString btnText);
-
+	void GetEnd(); //Gets and removes the last number in opAsString
+	bool ContainsOp();
+	void AddToIntList(); //Checks if numAsInt is empty and if it, adds a number to it
+	void Clear();
+	std::string GetNumberHolder();
 };
 
