@@ -2,7 +2,12 @@
 #include "wx\wx.h"
 #include <string>
 #include <sstream>
-
+#include "IBaseCommands.h"
+#include "AddCommand.h"
+#include "SubtractCommand.h"
+#include "DivideCommand.h"
+#include "MultiplyCommand.h"
+#include "ModCommand.h"
 class CalculatorProcessor
 {
 private:
@@ -12,6 +17,8 @@ private:
 
 	std::vector<std::string> opAsString;
 	std::vector<int> numAsInt;
+	std::vector<IBaseCommands*> commands;
+
 	std::string numberHolder = "";
 	int MDM = 0; //multiply/divide/mod
 	int AS = 0; //Addition/subtraction

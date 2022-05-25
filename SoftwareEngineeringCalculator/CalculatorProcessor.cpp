@@ -5,6 +5,8 @@ void CalculatorProcessor::Add() {
 		numAsInt.push_back(std::stoi(numberHolder));
 	}
 	opAsString.push_back("+");
+	AddCommand* AddCom = new AddCommand();
+	commands.push_back(AddCom);
 	numberHolder = "";
 }
 
@@ -13,6 +15,8 @@ void CalculatorProcessor::Subtract() {
 		numAsInt.push_back(std::stoi(numberHolder));
 	}
 	opAsString.push_back("-");
+	SubtractCommand* SubCom = new SubtractCommand();
+	commands.push_back(SubCom);
 	numberHolder = "";
 }
 
@@ -21,6 +25,8 @@ void CalculatorProcessor::Multiply() {
 		numAsInt.push_back(std::stoi(numberHolder));
 	}
 	opAsString.push_back("*");
+	MultiplyCommand* MultCom = new MultiplyCommand();
+	commands.push_back(MultCom);
 	numberHolder = "";
 }
 
@@ -29,6 +35,8 @@ void CalculatorProcessor::Divide() {
 		numAsInt.push_back(std::stoi(numberHolder));
 	}
 	opAsString.push_back("/");
+	DivideCommand* DivCom = new DivideCommand();
+	commands.push_back(DivCom);
 	numberHolder = "";
 }
 
@@ -37,6 +45,8 @@ void CalculatorProcessor::Mod() {
 		numAsInt.push_back(std::stoi(numberHolder));
 	}
 	opAsString.push_back("%");
+	ModCommand* ModCom = new ModCommand();
+	commands.push_back(ModCom);
 	numberHolder = "";
 }
 
@@ -56,92 +66,59 @@ void CalculatorProcessor::Equals() {
 		while (numAsInt.size() > 1) {
 			std::vector<int>::iterator numberIter = numAsInt.begin(); //2
 			std::vector<std::string>::iterator stringIter = opAsString.begin(); //+
+			std::vector<IBaseCommands*>::iterator commandsIter = commands.begin();
 
 			if (MDM > 0) {
-				int operatorTotal;
 				for (int i = 0; i < opAsString.size(); ++i) {          //opAsString = [+, *, -]     numAsInt = [2, 2, 3, 1]
-					if (opAsString[i] == "*") {
-						operatorTotal = numAsInt[i] * numAsInt[i + 1];   //operatorTotal = 2 * 3 (6)
-						numAsInt[i] = operatorTotal;  //[2, 6, 3, 1]
+					if (opAsString[i] == "*" || opAsString[i] == "/" || opAsString[i] == "%") {
+						numAsInt[i] = commands[i]->execute(numAsInt[i], numAsInt[i + 1]);  //[2, number one (*, /, %) number two, 3, 1]
 
 						numberIter++; // copyNumberIter = 3
 						numAsInt.erase(numberIter); // numAsInt = [2, 6, 1]
 						
 						opAsString.erase(stringIter); // opAsString = [+, -]
 
-						numberIter = numAsInt.begin();
-						stringIter = opAsString.begin();
-						i = 0;
-						MDM--;
-					}
-					else if (opAsString[i] == "/") {
-						operatorTotal = numAsInt[i] / numAsInt[i + 1];   //operatorTotal = 2 / 3 (2/3)
-						numAsInt[i] = operatorTotal;  //[2, 6, 3, 1]
-
-						numberIter++; // copyNumberIter = 3
-						numAsInt.erase(numberIter); // numAsInt = [2, 6, 1]
-
-						opAsString.erase(stringIter); // opAsString = [+, -]
+						delete commands[i]; //delete dynamic memory
+						commands.erase(commandsIter);
 
 						numberIter = numAsInt.begin();
 						stringIter = opAsString.begin();
-						i = 0;
-						MDM--;
-					}
-					else if (opAsString[i] == "%") {
-						operatorTotal = numAsInt[i] % numAsInt[i + 1];   //operatorTotal = 2 % 3 (2)
-						numAsInt[i] = operatorTotal;  //[2, 6, 3, 1]
-
-						numberIter++; // copyNumberIter = 3
-						numAsInt.erase(numberIter); // numAsInt = [2, 6, 1]
-
-						opAsString.erase(stringIter); // opAsString = [+, -]
-
-						numberIter = numAsInt.begin();
-						stringIter = opAsString.begin();
+						commandsIter = commands.begin();
+						
 						i = 0;
 						MDM--;
 					}
 					else {
 						numberIter++;
 						stringIter++;
+						commandsIter++;
 					}
 				}
 			}
 			else if (AS > 0) {
-				int operatorTotal;
 				for (int i = 0; i < opAsString.size(); ++i) {
-					if (opAsString[i] == "+") {
-						operatorTotal = numAsInt[i] + numAsInt[i + 1];   //operatorTotal = 2 + 3 (5)
-						numAsInt[i] = operatorTotal;  //[2, 6, 3, 1]
+					if (opAsString[i] == "+" || opAsString[i] == "-") {
+						numAsInt[i] = commands[i]->execute(numAsInt[i], numAsInt[i + 1]);  //[2, number one (+, -) number two, 3, 1]
 
 						numberIter++; // copyNumberIter = 3
 						numAsInt.erase(numberIter); // numAsInt = [2, 6, 1]
 
 						opAsString.erase(stringIter); // opAsString = [+, -]
 
-						numberIter = numAsInt.begin();
-						stringIter = opAsString.begin();
-						i = 0;
-						AS--;
-					}
-					else if (opAsString[i] == "-") {
-						operatorTotal = numAsInt[i] - numAsInt[i + 1];   //operatorTotal = 2 - 3 (-1)
-						numAsInt[i] = operatorTotal;  //[2, 6, 3, 1]
-
-						numberIter++; // copyNumberIter = 3
-						numAsInt.erase(numberIter); // numAsInt = [2, 6, 1]
-
-						opAsString.erase(stringIter); // opAsString = [+, -]
+						delete commands[i]; //delete dynamic memory
+						commands.erase(commandsIter);
 
 						numberIter = numAsInt.begin();
 						stringIter = opAsString.begin();
+						commandsIter = commands.begin();
+						
 						i = 0;
 						AS--;
 					}
 					else {
 						numberIter++;
 						stringIter++;
+						commandsIter++;
 					}
 				}
 			}
