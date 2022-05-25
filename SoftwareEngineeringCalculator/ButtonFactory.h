@@ -10,7 +10,7 @@ private:
 	wxSize size = wxSize(80, 60);
 	MainWindow* win;
 public:
-	ButtonFactory(MainWindow* _win);
+	ButtonFactory(MainWindow* _win = nullptr);
 	wxButton* CreateButton();
 	int y = 80;
 	int curRow = 0;
