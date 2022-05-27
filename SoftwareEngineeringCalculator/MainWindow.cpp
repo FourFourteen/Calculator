@@ -4,6 +4,29 @@
 
 wxBEGIN_EVENT_TABLE(MainWindow, wxFrame)
 	EVT_BUTTON(1, OnButtonClicked)
+	EVT_BUTTON(2, OnButtonClicked)
+	EVT_BUTTON(3, OnButtonClicked)
+	EVT_BUTTON(4, OnButtonClicked)
+	EVT_BUTTON(5, OnButtonClicked)
+	EVT_BUTTON(6, OnButtonClicked)
+	EVT_BUTTON(7, OnButtonClicked)
+	EVT_BUTTON(8, OnButtonClicked)
+	EVT_BUTTON(9, OnButtonClicked)
+	EVT_BUTTON(10, OnButtonClicked)
+	EVT_BUTTON(11, OnButtonClicked)
+	EVT_BUTTON(12, OnButtonClicked)
+	EVT_BUTTON(13, OnButtonClicked)
+	EVT_BUTTON(14, OnButtonClicked)
+	EVT_BUTTON(15, OnButtonClicked)
+	EVT_BUTTON(16, OnButtonClicked)
+	EVT_BUTTON(17, OnButtonClicked)
+	EVT_BUTTON(18, OnButtonClicked)
+	EVT_BUTTON(19, OnButtonClicked)
+	EVT_BUTTON(20, OnButtonClicked)
+	EVT_BUTTON(21, OnButtonClicked)
+	EVT_BUTTON(22, OnButtonClicked)
+	EVT_BUTTON(23, OnButtonClicked)
+	EVT_BUTTON(24, OnButtonClicked)
 wxEND_EVENT_TABLE()
 
 MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), wxSize(337, 480)) {
@@ -24,7 +47,7 @@ MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200,
 	for (int i = 1; i <= 24; ++i) {
 		buttons[i-1] = new wxButton(this, i, symbols[i-1], wxPoint(((i - 1) % 4) * 80, y), size);
 		btnsizer->Add((buttons[i - 1]), 1, wxEXPAND | wxALL);
-		buttons[i-1]->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &MainWindow::OnButtonClicked, this);
+		//buttons[i-1]->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &MainWindow::OnButtonClicked, this);
 		if (i % 4 == 0) {
 			btnsizer->AddGrowableRow(curRow);
 			curRow++;
