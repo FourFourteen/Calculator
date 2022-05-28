@@ -2,12 +2,12 @@
 #include "wx\wx.h"
 #include <string>
 #include <sstream>
-#include "../SoftwareEngineeringCalculator/IBaseCommands.h"
-#include "../SoftwareEngineeringCalculator/AddCommand.h"
-#include "../SoftwareEngineeringCalculator/SubtractCommand.h"
-#include "../SoftwareEngineeringCalculator/DivideCommand.h"
-#include "../SoftwareEngineeringCalculator/MultiplyCommand.h"
-#include "../SoftwareEngineeringCalculator/ModCommand.h"
+#include "IBaseCommands.h"
+#include "AddCommand.h"
+#include "SubtractCommand.h"
+#include "DivideCommand.h"
+#include "MultiplyCommand.h"
+#include "ModCommand.h"
 class CalculatorProcessor
 {
 private:
@@ -45,10 +45,10 @@ public:
 	void Multiply();
 	void Divide();
 	void Mod();
-	void Equals();
-	void Hex();
-	void Bin();
-	void Dec();
+	std::string Equals();
+	std::string Hex();
+	std::string Bin();
+	std::string Dec();
 	wxTextCtrl* GetText();
 	void AddNumber(wxString btnText);
 	void GetEnd(); //Gets and removes the last number in opAsString
