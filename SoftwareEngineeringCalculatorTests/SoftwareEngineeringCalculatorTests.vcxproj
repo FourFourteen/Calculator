@@ -150,6 +150,7 @@
     <ClCompile Include="..\SoftwareEngineeringCalculator\MultiplyCommand.cpp" />
     <ClCompile Include="..\SoftwareEngineeringCalculator\SubtractCommand.cpp" />
     <ClCompile Include="ButtonFactoryTests.cpp" />
+    <ClCompile Include="CalculatorProcessor1.cpp" />
     <ClCompile Include="CalculatorProcessorTests.cpp" />
     <ClCompile Include="SoftwareEngineeringCalculatorTests.cpp" />
   </ItemGroup>
@@ -164,6 +165,7 @@
     <ClInclude Include="..\SoftwareEngineeringCalculator\MultiplyCommand.h" />
     <ClInclude Include="..\SoftwareEngineeringCalculator\SubtractCommand.h" />
     <ClInclude Include="ButtonFactoryTests.h" />
+    <ClInclude Include="CalculatorProcessor1.h" />
     <ClInclude Include="CalculatorProcessorTests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -48,6 +48,9 @@
     <ClCompile Include="..\SoftwareEngineeringCalculator\SubtractCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CalculatorProcessor1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ButtonFactoryTests.h">
@@ -56,22 +59,10 @@
     <ClInclude Include="CalculatorProcessorTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\SoftwareEngineeringCalculator\ButtonFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\SoftwareEngineeringCalculator\CalculatorProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\SoftwareEngineeringCalculator\MainWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SoftwareEngineeringCalculator\AddCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\SoftwareEngineeringCalculator\DivideCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SoftwareEngineeringCalculator\IBaseCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\SoftwareEngineeringCalculator\ModCommand.h">
@@ -81,6 +72,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\SoftwareEngineeringCalculator\SubtractCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SoftwareEngineeringCalculator\AddCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SoftwareEngineeringCalculator\ButtonFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SoftwareEngineeringCalculator\IBaseCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SoftwareEngineeringCalculator\MainWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CalculatorProcessor1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
