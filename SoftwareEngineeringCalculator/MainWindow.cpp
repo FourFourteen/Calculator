@@ -31,7 +31,7 @@
 //	EVT_BUTTON(24, OnButtonClicked)
 //
 //wxEND_EVENT_TABLE()
-//push
+
 CalculatorProcessor* CalculatorProcessor::instance;
 MainWindow::MainWindow() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), wxSize(337, 480)) {
 
