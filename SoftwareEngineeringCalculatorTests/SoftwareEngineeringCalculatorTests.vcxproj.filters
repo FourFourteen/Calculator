@@ -59,9 +59,6 @@
     <ClInclude Include="CalculatorProcessorTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\SoftwareEngineeringCalculator\CalculatorProcessor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\SoftwareEngineeringCalculator\DivideCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
