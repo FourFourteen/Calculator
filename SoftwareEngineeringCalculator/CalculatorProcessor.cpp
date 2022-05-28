@@ -1,4 +1,5 @@
 #include "CalculatorProcessor.h"
+#include "../SoftwareEngineeringCalculator/CalculatorProcessor.h"
 
 void CalculatorProcessor::Add() {
 	if (numAsInt.size() == opAsString.size()) {

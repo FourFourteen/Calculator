@@ -11,6 +11,7 @@ private:
 	MainWindow* win;
 public:
 	ButtonFactory(MainWindow* _win);
+	ButtonFactory();
 	wxButton* CreateButton();
 	int y = 80;
 	int curRow = 0;

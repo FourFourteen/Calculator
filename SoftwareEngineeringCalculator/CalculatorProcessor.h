@@ -8,6 +8,7 @@
 #include "DivideCommand.h"
 #include "MultiplyCommand.h"
 #include "ModCommand.h"
+
 class CalculatorProcessor
 {
 private:

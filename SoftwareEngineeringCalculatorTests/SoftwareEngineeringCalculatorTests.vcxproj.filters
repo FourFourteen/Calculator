@@ -18,16 +18,16 @@
     <ClCompile Include="SoftwareEngineeringCalculatorTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ButtonFactoryTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CalculatorProcessorTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\SoftwareEngineeringCalculator\ButtonFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\SoftwareEngineeringCalculator\CalculatorProcessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonFactoryTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CalculatorProcessorTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\SoftwareEngineeringCalculator\MainWindow.cpp">
