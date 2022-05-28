@@ -2,12 +2,12 @@
 #include "wx\wx.h"
 #include <string>
 #include <sstream>
-#include "IBaseCommands.h"
-#include "AddCommand.h"
-#include "SubtractCommand.h"
-#include "DivideCommand.h"
-#include "MultiplyCommand.h"
-#include "ModCommand.h"
+#include "../SoftwareEngineeringCalculator/AddCommand.h"
+#include "../SoftwareEngineeringCalculator/SubtractCommand.h"
+#include "../SoftwareEngineeringCalculator/MultiplyCommand.h"
+#include "../SoftwareEngineeringCalculator/DivideCommand.h"
+#include "../SoftwareEngineeringCalculator/ModCommand.h"
+#include "../SoftwareEngineeringCalculator/IBaseCommands.h"
 class CalculatorProcessor
 {
 private:

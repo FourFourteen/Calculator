@@ -45,10 +45,10 @@ public:
 	void Multiply();
 	void Divide();
 	void Mod();
-	std::string Equals();
-	std::string Hex();
-	std::string Bin();
-	std::string Dec();
+	void Equals();
+	void Hex();
+	void Bin();
+	void Dec();
 	wxTextCtrl* GetText();
 	void AddNumber(wxString btnText);
 	void GetEnd(); //Gets and removes the last number in opAsString
