@@ -1,8 +1,13 @@
-#include "../SoftwareEngineeringCalculator/MainWindow.h"
+#include "MainWindow.h"
 #include "../SoftwareEngineeringCalculator/ButtonFactory.h"
+#include "ButtonFactory.h"
 
 ButtonFactory::ButtonFactory(MainWindow* _win) {
 	win = _win;
+}
+
+ButtonFactory::ButtonFactory() {
+
 }
 
 wxButton* ButtonFactory::CreateButton() {
