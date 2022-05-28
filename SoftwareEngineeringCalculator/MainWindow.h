@@ -6,7 +6,6 @@ class MainWindow : public wxFrame
 {
 public:
 	MainWindow();
-	wxTextCtrl* GetTxt();
 	~MainWindow();
 public:
 	wxButton* mod = nullptr;

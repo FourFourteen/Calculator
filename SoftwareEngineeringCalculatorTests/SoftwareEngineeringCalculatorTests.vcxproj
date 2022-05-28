@@ -141,28 +141,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\SoftwareEngineeringCalculator\AddCommand.cpp" />
     <ClCompile Include="..\SoftwareEngineeringCalculator\ButtonFactory.cpp" />
     <ClCompile Include="..\SoftwareEngineeringCalculator\CalculatorProcessor.cpp" />
-    <ClCompile Include="..\SoftwareEngineeringCalculator\DivideCommand.cpp" />
     <ClCompile Include="..\SoftwareEngineeringCalculator\MainWindow.cpp" />
-    <ClCompile Include="..\SoftwareEngineeringCalculator\ModCommand.cpp" />
-    <ClCompile Include="..\SoftwareEngineeringCalculator\MultiplyCommand.cpp" />
-    <ClCompile Include="..\SoftwareEngineeringCalculator\SubtractCommand.cpp" />
     <ClCompile Include="ButtonFactoryTests.cpp" />
     <ClCompile Include="CalculatorProcessorTests.cpp" />
     <ClCompile Include="SoftwareEngineeringCalculatorTests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\SoftwareEngineeringCalculator\AddCommand.h" />
     <ClInclude Include="..\SoftwareEngineeringCalculator\ButtonFactory.h" />
     <ClInclude Include="..\SoftwareEngineeringCalculator\CalculatorProcessor.h" />
-    <ClInclude Include="..\SoftwareEngineeringCalculator\DivideCommand.h" />
-    <ClInclude Include="..\SoftwareEngineeringCalculator\IBaseCommands.h" />
     <ClInclude Include="..\SoftwareEngineeringCalculator\MainWindow.h" />
-    <ClInclude Include="..\SoftwareEngineeringCalculator\ModCommand.h" />
-    <ClInclude Include="..\SoftwareEngineeringCalculator\MultiplyCommand.h" />
-    <ClInclude Include="..\SoftwareEngineeringCalculator\SubtractCommand.h" />
     <ClInclude Include="ButtonFactoryTests.h" />
     <ClInclude Include="CalculatorProcessorTests.h" />
   </ItemGroup>
