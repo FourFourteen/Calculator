@@ -33,6 +33,21 @@
     <ClCompile Include="..\SoftwareEngineeringCalculator\MainWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\SoftwareEngineeringCalculator\AddCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SoftwareEngineeringCalculator\DivideCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SoftwareEngineeringCalculator\ModCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SoftwareEngineeringCalculator\MultiplyCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SoftwareEngineeringCalculator\SubtractCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ButtonFactoryTests.h">
@@ -48,6 +63,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\SoftwareEngineeringCalculator\MainWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SoftwareEngineeringCalculator\AddCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SoftwareEngineeringCalculator\DivideCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SoftwareEngineeringCalculator\IBaseCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SoftwareEngineeringCalculator\ModCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SoftwareEngineeringCalculator\MultiplyCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SoftwareEngineeringCalculator\SubtractCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

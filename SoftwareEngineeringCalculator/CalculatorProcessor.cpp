@@ -50,7 +50,7 @@ void CalculatorProcessor::Mod() {
 	numberHolder = "";
 }
 
-void CalculatorProcessor::Equals() {
+std::string CalculatorProcessor::Equals() {
 	if (!(numberHolder == "")) { //Making sure that the user didn't end the equation with a random operator
 		numAsInt.push_back(std::stoi(numberHolder));
 
@@ -124,7 +124,7 @@ void CalculatorProcessor::Equals() {
 			}
 
 		}
-		txt->Clear();
+		//txt->Clear();
 		if (isHex) {
 			Hex();
 		}
@@ -132,15 +132,16 @@ void CalculatorProcessor::Equals() {
 			Bin();
 		}
 		else {
-			txt->AppendText(std::to_string(numAsInt[0]));
+			//txt->AppendText(std::to_string(numAsInt[0]));
 		}
 
 		numberHolder = std::to_string(numAsInt[0]);
-		numAsInt.clear();
 		opAsString.clear();
 		AS = 0;
 		MDM = 0;
 	}
+	return std::to_string(numAsInt[0]);
+	Clear();
 }
 
 void CalculatorProcessor::AddNumber(wxString btnText) {
@@ -152,7 +153,7 @@ CalculatorProcessor::~CalculatorProcessor() {
 	delete txt;
 }
 
-void CalculatorProcessor::Hex() {
+std::string CalculatorProcessor::Hex() {
 	std::ostringstream ss;
 	std::string result;
 
@@ -161,11 +162,12 @@ void CalculatorProcessor::Hex() {
 	ss << std::hex << numAsInt[0];
 	result = ss.str();
 	
-	txt->Clear();
-	txt->AppendText(result);
+	//txt->Clear();
+	//txt->AppendText(result);
+	return result;
 }
 
-void CalculatorProcessor::Bin() {
+std::string CalculatorProcessor::Bin() {
 	std::string result;
 	int convert;
 	
@@ -178,20 +180,24 @@ void CalculatorProcessor::Bin() {
 		convert /= 2;
 	}
 
-	txt->Clear();
-	wxString reverse = std::string(result.rbegin(), result.rend());
-	txt->AppendText(reverse);
+	//txt->Clear();
+	result = std::string(result.rbegin(), result.rend());
+	//txt->AppendText(reverse);
+
+	return result;
 }
 
-void CalculatorProcessor::Dec() {
+std::string CalculatorProcessor::Dec() {
 	std::string result;
 
 	AddToIntList();
 
 	result += std::to_string(numAsInt[0]);
 
-	txt->Clear();
-	txt->AppendText(result);
+	//txt->Clear();
+	//txt->AppendText(result);
+
+	return result;
 }
 
 wxTextCtrl* CalculatorProcessor::GetText() {
@@ -225,7 +231,7 @@ void CalculatorProcessor::AddToIntList() {
 void CalculatorProcessor::Clear() {
 	numAsInt.clear();
 	opAsString.clear();
-	txt->Clear();
+	//txt->Clear();
 	numberHolder = "";
 }
 

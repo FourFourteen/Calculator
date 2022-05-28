@@ -71,6 +71,10 @@ MainWindow::~MainWindow() {
 	}
 }
 
+wxTextCtrl* MainWindow::GetTxt() {
+	return txt;
+}
+
 //2 lists 
 //A list of the operators as strings
 //A list of the numbers as floats
