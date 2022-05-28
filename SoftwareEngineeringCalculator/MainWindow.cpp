@@ -117,6 +117,7 @@ void MainWindow::OnButtonClicked(wxCommandEvent& evt) {
 		}
 		else {
 			//= button
+			process->Dec();
 			process->Equals();
 		}
 	}

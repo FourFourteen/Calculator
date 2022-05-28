@@ -52,7 +52,7 @@ void CalculatorProcessor::Mod() {
 }
 
 void CalculatorProcessor::Equals() {
-	if (!(numberHolder == "")) { //Making sure that the user didn't end the equation with a random operator
+	if (numAsInt.size() == opAsString.size()) { //Making sure that the user didn't end the equation with a random operator
 		numAsInt.push_back(std::stoi(numberHolder));
 
 		for (int i = 0; i < opAsString.size(); ++i) {
@@ -75,7 +75,9 @@ void CalculatorProcessor::Equals() {
 						numAsInt[i] = commands[i]->execute(numAsInt[i], numAsInt[i + 1]);  //[2, number one (*, /, %) number two, 3, 1]
 
 						numberIter++; // copyNumberIter = 3
-						numAsInt.erase(numberIter); // numAsInt = [2, 6, 1]
+						if (numAsInt.size() > 1) {
+							numAsInt.erase(numberIter); // numAsInt = [2, 6, 1]
+						}
 						
 						opAsString.erase(stringIter); // opAsString = [+, -]
 
@@ -102,7 +104,9 @@ void CalculatorProcessor::Equals() {
 						numAsInt[i] = commands[i]->execute(numAsInt[i], numAsInt[i + 1]);  //[2, number one (+, -) number two, 3, 1]
 
 						numberIter++; // copyNumberIter = 3
-						numAsInt.erase(numberIter); // numAsInt = [2, 6, 1]
+						if (numAsInt.size() > 1) {
+							numAsInt.erase(numberIter); // numAsInt = [2, 6, 1]
+						}
 
 						opAsString.erase(stringIter); // opAsString = [+, -]
 
@@ -154,45 +158,51 @@ CalculatorProcessor::~CalculatorProcessor() {
 }
 
 void CalculatorProcessor::Hex() {
-	std::ostringstream ss;
-	std::string result;
+	if (numberHolder != "") {
+		std::ostringstream ss;
+		std::string result;
 
-	AddToIntList();
+		//AddToIntList();
 
-	ss << std::hex << numAsInt[0];
-	result = ss.str();
-	
-	txt->Clear();
-	txt->AppendText(result);
+		ss << std::hex << std::stoi(numberHolder);
+		result = ss.str();
+
+		txt->Clear();
+		txt->AppendText(result);
+	}
 }
 
 void CalculatorProcessor::Bin() {
-	std::string result;
-	int convert;
-	
-	AddToIntList();
+	if (numberHolder != "") {
+		std::string result;
+		int convert;
 
-	convert = numAsInt[0];
+		//AddToIntList();
 
-	while (convert != 0) {
-		result += (convert % 2 == 0 ? "0" : "1");
-		convert /= 2;
+		convert = std::stoi(numberHolder);
+
+		while (convert != 0) {
+			result += (convert % 2 == 0 ? "0" : "1");
+			convert /= 2;
+		}
+
+		txt->Clear();
+		wxString reverse = std::string(result.rbegin(), result.rend());
+		txt->AppendText(reverse);
 	}
-
-	txt->Clear();
-	wxString reverse = std::string(result.rbegin(), result.rend());
-	txt->AppendText(reverse);
 }
 
 void CalculatorProcessor::Dec() {
-	std::string result;
+	if (numberHolder != "") {
+		//std::string result;
 
-	AddToIntList();
+		//AddToIntList();
 
-	result += std::to_string(numAsInt[0]);
+		//result += std::stoi(numberHolder);
 
-	txt->Clear();
-	txt->AppendText(result);
+		txt->Clear();
+		txt->AppendText(numberHolder);
+	}
 }
 
 wxTextCtrl* CalculatorProcessor::GetText() {
