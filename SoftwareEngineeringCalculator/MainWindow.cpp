@@ -152,3 +152,6 @@ void MainWindow::OnButtonClicked(wxCommandEvent& evt) {
 	evt.Skip();
 }
 
+wxTextCtrl* MainWindow::GetTxt() {
+	return txt;
+}
